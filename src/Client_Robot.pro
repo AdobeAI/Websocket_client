@@ -36,12 +36,21 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
+CONFIG(debug, debug|release) {
+    QMAKE_CXXFLAGS += -std=gnu++11 -g
+} else {
+    QMAKE_CXXFLAGS += -std=gnu++11 -O2
+}
+
 INCLUDEPATH += /home/rd2brian/lib/jsoncpp-1.8.4/include \
                /home/rd2brian/lib/boost_1_68_0/ \
 
 LIBS += /home/rd2brian/lib/jsoncpp-1.8.4/src/lib_json/libjsoncpp.a \
-        /home/rd2brian/lib/boost_1_68_0/stage/lib/ \
+        -L/home/rd2brian/lib/boost_1_68_0/stage/lib \
+        -lboost_system
         -lpthread \
+
+LIBS += -lssl -lcrypto \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
