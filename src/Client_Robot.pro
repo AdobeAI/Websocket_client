@@ -47,7 +47,7 @@ INCLUDEPATH += /home/rd2brian/lib/jsoncpp-1.8.4/include \
 
 LIBS += /home/rd2brian/lib/jsoncpp-1.8.4/src/lib_json/libjsoncpp.a \
         -L/home/rd2brian/lib/boost_1_68_0/stage/lib \
-        -lboost_system
+        -lboost_system \
         -lpthread \
 
 LIBS += -lssl -lcrypto \

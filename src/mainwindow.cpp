@@ -9,9 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     boost::asio::io_context ioc;
 
-    std::make_shared<Session>(ioc)->run("localhost", "51231", "hello world!");
+    std::make_shared<WebSocket>(ioc)->run("127.0.0.1", "68888", "hello world!");
     ioc.run();
-    std::cout << "test" << std::endl;
 }
 
 MainWindow::~MainWindow() {

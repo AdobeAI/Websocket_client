@@ -13,7 +13,7 @@
 namespace websocket = boost::beast::websocket;
 using tcp = boost::asio::ip::tcp;
 
-class Session : public std::enable_shared_from_this<Session> {
+class WebSocket : public std::enable_shared_from_this<WebSocket> {
     tcp::resolver resolver;
     websocket::stream<tcp::socket> ws;
     boost::beast::multi_buffer buffer;
@@ -21,25 +21,25 @@ class Session : public std::enable_shared_from_this<Session> {
     std::string text;
 
 public:
-    explicit Session(boost::asio::io_context& ioc);
+    explicit WebSocket(boost::asio::io_context& ioc);
 
     void run(char const* host,
              char const* port,
              char const* text);
 
-    void on_resolve(boost::system::error_code ec,
+    void onResolve(boost::system::error_code ec,
                     tcp::resolver::results_type results);
 
-    void on_connect(boost::system::error_code ec);
+    void onConnect(boost::system::error_code ec);
 
-    void on_handshake(boost::system::error_code ec);
+    void onHandshake(boost::system::error_code ec);
 
-    void on_write(boost::system::error_code ec,
+    void onWrite(boost::system::error_code ec,
                   std::size_t bytes_transferred);
 
-    void on_read(boost::system::error_code ec,
+    void onRead(boost::system::error_code ec,
                  std::size_t bytes_transferred);
 
-    void on_close(boost::system::error_code ec);
+    void onClose(boost::system::error_code ec);
 };
 
