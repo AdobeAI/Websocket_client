@@ -27,11 +27,19 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    websocket.cpp
+    robot/websocket.cpp \
+    robot/robot.cpp \
+    robotmanager.cpp \
+    robot/codec.cpp
 
 HEADERS += \
         mainwindow.h \
-    websocket.h
+    robot/websocket.h \
+    robot/robot.h \
+    robotmanager.h \
+    iocontextpool.h \
+    robot/message.h \
+    robot/codec.h
 
 FORMS += \
         mainwindow.ui
@@ -44,8 +52,10 @@ CONFIG(debug, debug|release) {
 
 INCLUDEPATH += /home/rd2brian/lib/jsoncpp-1.8.4/include \
                /home/rd2brian/lib/boost_1_68_0/ \
+               ../ProtocolBuilder/ \
 
 LIBS += /home/rd2brian/lib/jsoncpp-1.8.4/src/lib_json/libjsoncpp.a \
+        ../ProtocolBuilder/libProtocolBuilder.a \
         -L/home/rd2brian/lib/boost_1_68_0/stage/lib \
         -lboost_system \
         -lpthread \
